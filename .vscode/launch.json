@@ -1,0 +1,90 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+
+        {
+            "name": "train.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "train.py",
+            "console": "integratedTerminal",
+            "args":[
+                "--data", "SMART",
+                "--model_name", "Qwen2_VL_2B",
+                "--experiment", "supervised",
+                "--answer_type", "value",
+                "--batch_size", "1",
+                "--lr", "1e-5",
+                "--save_folder", "dump",
+                "--use_img", "True",
+                "--use_gpu", "0"
+            ]
+        },
+
+        {
+            "name": "eval.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "eval.py",
+            "console": "integratedTerminal",
+            "args":[
+                "--model_name", "Qwen2_VL_2B",
+                "--experiment", "supervised",
+                "--answer_type", "value",
+                "--batch_size", "8",
+                "--load_ckpt_path", "value_gen_with_opt_dcp_mca/epoch_1/whole_model.pth",
+                "--use_img", "True",
+                "--use_option_prompt", "True",
+                "--use_gpu", "0"
+            ]
+        },
+
+        {
+            "name": "ablation_study.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "ablation_study.py",
+            "console": "integratedTerminal",
+            "args":[
+                "--model_name", "Meteor",
+                "--ablation_level", "1",
+                "--experiment", "supervised",
+                "--answer_type", "value",
+                "--batch_size", "1",
+                "--use_gpu", "0"
+            ]
+        },
+
+        {
+            "name": "schema_head_main.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "schema_head_main.py",
+            "console": "integratedTerminal",
+            "args":[
+                "--mode", "schema_head_test",
+                "--data", "Geo3K",
+                "--model_name", "schema_head",
+                "--experiment", "supervised",
+                "--answer_type", "value",
+                "--batch_size", "64",
+                "--lr", "1e-5",
+                "--save_folder", "dump",
+                "--use_option_prompt", "True",
+                "--use_img", "True",
+                "--load_ckpt_path", "/data/jhpark_checkpoint/schema_and_argument_ckpt/schema_head_lr_1e3/epoch_1/whole_model.pth"
+            ]
+        },
+
+    ]
+}
